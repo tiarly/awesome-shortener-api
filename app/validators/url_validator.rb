@@ -8,10 +8,7 @@ class UrlValidator < ActiveModel::EachValidator
   # rubocop:enable Layout/LineLength
 
   def validate_each(record, attribute, value)
-    record.errors[attribute] << (options[:message] || DEFAULT_MESSAGE) if url_not_valid?(value)
-  end
-
-  def url_not_valid?(value)
-    (URL_REGEX =~ value).nil?
+    valid = (URL_REGEX =~ value)
+    record.errors[attribute] << (options[:message] || DEFAULT_MESSAGE) unless valid
   end
 end
