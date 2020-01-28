@@ -6,3 +6,10 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+RSpec::Core::RakeTask.new(:spec)
+
+Dir['tasks/**/*.rake'].each { |t| load t }
+
+task ci: [:spec, :rubocop, :reek]
+task default: :spec
