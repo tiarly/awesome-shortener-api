@@ -2,6 +2,8 @@ AllCops:
   Exclude:
     - 'tasks/*.rake'
     - 'Rakefile'
+    - 'db/schema.rb'
+    - 'Gemfile*'
   TargetRubyVersion: 2.7.0
 
 Metrics/BlockLength:
