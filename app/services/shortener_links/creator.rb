@@ -21,7 +21,9 @@ module ShortenerLinks
     delegate :original_url, to: :@shortener_link
 
     def existing_link
-      @existing_link ||= ShortenerLink.find_by(original_url: original_url)
+      @existing_link ||= ShortenerLink.find_by(original_url: original_url).tap do |model|
+        @shortener_link.token = model.token if model
+      end
     end
 
     def generate_unique_token
