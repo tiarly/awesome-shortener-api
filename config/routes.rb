@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/:token', to: 'api/v1/shortener_links#show', as: :link
+
+  namespace :api do
+    namespace :v1 do
+      resources :shortener_links, only: %i[create]
+    end
+  end
 end
