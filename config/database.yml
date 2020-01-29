@@ -70,14 +70,7 @@ test:
 # available as an environment variable. For example:
 #
 #   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
-#
-# You can use this database configuration with:
-#
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
 production:
   <<: *default
   database: awesome_shortener_api_production
-  username: awesome_shortener_api
-  password: <%= ENV['AWESOME_SHORTENER_API_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
