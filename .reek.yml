@@ -1,0 +1,15 @@
+---
+
+### Generic smell configuration
+
+detectors:
+  # You can disable smells completely
+  IrresponsibleModule:
+    enabled: false
+  UtilityFunction:
+    enabled: false
+  UncommunicativeModuleName:
+    accept:
+      - Api
+exclude_paths:
+  - db/migrate

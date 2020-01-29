@@ -1,0 +1,19 @@
+---
+language: ruby
+cache: bundler
+rvm:
+  - 2.7.0
+# sets up services like your databases
+services:
+  - postgresql
+
+# scripts you run before your test
+# in this case, it creates and migrates our postgresql database
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - RAILS_ENV=test bundle exec rake db:create
+  - RAILS_ENV=test bundle exec rake db:migrate
+before_install: gem install bundler
+
+script:
+  - bundle exec rake spec
