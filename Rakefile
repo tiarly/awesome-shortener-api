@@ -7,9 +7,11 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 
-RSpec::Core::RakeTask.new(:spec)
+if Rails.env.test? || Rails.env.development?
+  RSpec::Core::RakeTask.new(:spec)
 
-Dir['tasks/**/*.rake'].each { |t| load t }
+  Dir['tasks/**/*.rake'].each { |t| load t }
 
-task ci: [:spec, :rubocop, :reek]
-task default: :spec
+  task ci: [:spec, :rubocop, :reek]
+  task default: :spec
+end
