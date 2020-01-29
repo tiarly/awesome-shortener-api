@@ -16,4 +16,4 @@ before_script:
 before_install: gem install bundler
 
 script:
-  - bundle exec rake ci
+  - bundle exec rake spec
