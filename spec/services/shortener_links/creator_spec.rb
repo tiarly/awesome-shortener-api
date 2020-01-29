@@ -16,7 +16,7 @@ module ShortenerLinks
         end
 
         it 'does not create a new ShortenerLink' do
-          expect { subject }.to change { ShortenerLink.count }.by(0)
+          expect { subject }.to change { ShortenerLink.count }.by 0
         end
       end
 
@@ -24,7 +24,7 @@ module ShortenerLinks
         let(:original_url) { 'https://lexfox.com' }
 
         it 'creates a new ShortenerLink' do
-          expect { subject }.to change { ShortenerLink.count }.by(1)
+          expect { subject }.to change { ShortenerLink.count }.by 1
         end
 
         context 'and it is an invalid url' do
@@ -33,7 +33,7 @@ module ShortenerLinks
           it 'does not create a new ShortenerLink' do
             response = subject
           rescue ActiveRecord::RecordInvalid
-            expect { response }.to change { ShortenerLink.count }.by(0)
+            expect { response }.to change { ShortenerLink.count }.by 0
           end
 
           it 'raises ActiveRecord::RecordInvalid' do
