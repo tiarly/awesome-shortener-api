@@ -4,19 +4,21 @@ module ShortenerLinks
   class Creator
     include Service
 
-    def call(original_url)
-      @original_url = original_url
+    def call(shortener_link)
+      @shortener_link = shortener_link
 
       return existing_link if existing_link
 
-      ShortenerLink.create!(
-        original_url: original_url, token: generate_unique_token
-      )
+      shortener_link.token = generate_unique_token
+
+      shortener_link.save
     end
 
     private
 
-    attr_reader :original_url
+    attr_reader :shortener_link
+
+    delegate :original_url, to: :@shortener_link
 
     def existing_link
       @existing_link ||= ShortenerLink.find_by(original_url: original_url)

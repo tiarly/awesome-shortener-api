@@ -5,14 +5,13 @@ require 'rails_helper'
 module ShortenerLinks
   describe Creator do
     context '#call' do
-      subject { described_class.call(original_url) }
+      subject { described_class.call(link) }
 
-      context 'when original_url already exists' do
-        let!(:existing_link) { create(:shortener_link) }
-        let(:original_url) { existing_link.original_url }
+      context 'when link already exists' do
+        let!(:link) { create(:shortener_link) }
 
         it 'returns the existing link' do
-          is_expected.to eq existing_link
+          is_expected.to eq link
         end
 
         it 'does not create a new ShortenerLink' do
@@ -20,24 +19,22 @@ module ShortenerLinks
         end
       end
 
-      context 'when original_url does NOT exist' do
-        let(:original_url) { 'https://lexfox.com' }
+      context 'when link does NOT exist' do
+        let(:link) { build(:shortener_link) }
 
         it 'creates a new ShortenerLink' do
           expect { subject }.to change { ShortenerLink.count }.by 1
         end
 
         context 'and it is an invalid url' do
-          let(:original_url) { 'https:lexfox.com' }
+          let(:link) { build(:shortener_link, original_url: 'https:lexfox.com') }
 
           it 'does not create a new ShortenerLink' do
-            response = subject
-          rescue ActiveRecord::RecordInvalid
-            expect { response }.to change { ShortenerLink.count }.by 0
+            expect { subject }.to change { ShortenerLink.count }.by 0
           end
 
-          it 'raises ActiveRecord::RecordInvalid' do
-            expect { subject }.to raise_error ActiveRecord::RecordInvalid
+          it 'returns false' do
+            is_expected.to eq false
           end
         end
       end
