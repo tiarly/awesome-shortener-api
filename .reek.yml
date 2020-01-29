@@ -8,5 +8,8 @@ detectors:
     enabled: false
   UtilityFunction:
     enabled: false
+  UncommunicativeModuleName:
+    accept:
+      - Api
 exclude_paths:
   - db/migrate
