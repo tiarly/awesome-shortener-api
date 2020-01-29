@@ -9,7 +9,6 @@ class TokenGenerator
 
   MAX_TOKEN_LENGTH = 8
 
-  # This method smells of :reek:UtilityFunction
   def call
     alphanumeric_list = (LOWER_ALPHABET + UPCASE_ALPHABET + NUMBERS)
 
