@@ -28,4 +28,12 @@ RSpec.describe ShortenerLink, type: :model do
 
     it { is_expected.to eq true }
   end
+
+  describe '.second_call_to_testing_method_for_bors_merge' do
+    subject { link.second_call_to_testing_method_for_bors_merge }
+
+    let(:link) { build(:shortener_link) }
+
+    it { is_expected.to eq true }
+  end
 end
