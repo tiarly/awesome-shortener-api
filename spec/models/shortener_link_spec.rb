@@ -21,8 +21,8 @@ RSpec.describe ShortenerLink, type: :model do
     end
   end
 
-  describe '.testing_method_for_bors_merge' do
-    subject { link.testing_method_for_bors_merge }
+  describe '.changed_testing_method_for_bors_merge' do
+    subject { link.changed_testing_method_for_bors_merge }
 
     let(:link) { build(:shortener_link) }
 
