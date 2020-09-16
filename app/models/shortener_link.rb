@@ -10,7 +10,7 @@ class ShortenerLink < ApplicationRecord
     Rails.application.routes.url_helpers.link_url(token, host_options)
   end
 
-  def testing_method_for_bors_merge
+  def changed_testing_method_for_bors_merge
     true
   end
 end
