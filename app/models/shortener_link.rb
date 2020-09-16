@@ -15,6 +15,6 @@ class ShortenerLink < ApplicationRecord
   end
 
   def second_call_to_testing_method_for_bors_merge
-    testing_method_for_bors_merge
+    changed_testing_method_for_bors_merge
   end
 end
