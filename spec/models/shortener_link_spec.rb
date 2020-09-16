@@ -20,4 +20,12 @@ RSpec.describe ShortenerLink, type: :model do
       is_expected.to eq "http://localhost:3000/#{token}"
     end
   end
+
+  describe '.testing_method_for_bors_merge' do
+    subject { link.testing_method_for_bors_merge }
+
+    let(:link) { build(:shortener_link) }
+
+    it { is_expected.to eq true }
+  end
 end
